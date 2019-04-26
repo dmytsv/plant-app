@@ -1,12 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import reducers from "./reducers";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import App from "./components/App";
+import Landing from "./components/Landing";
+import About from "./components/About";
+import Signup from "./components/auth/Signup";
+import Signin from "./components/auth/Signin";
+import Signout from "./components/auth/Signout";
+import PlantsList from "./components/PlantsList";
+
+const store = createStore(
+  reducers,
+  {
+    auth: { authenticated: localStorage.getItem("token") }
+  },
+  applyMiddleware(thunk)
+);
+
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App>
+        <Route path="/" exact component={Landing} />
+        <Route path="/about" exact component={About} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/signin" exact component={Signin} />
+        <Route path="/signout" exact component={Signout} />
+        <Route path="/plants" exact component={PlantsList} />
+      </App>
+    </BrowserRouter>
+  </Provider>,
+  document.querySelector("#root")
+);
