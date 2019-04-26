@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/plant-app/static/css/main.6ec210f6.chunk.css",
+    "main.js": "/plant-app/static/js/main.56be90a1.chunk.js",
+    "main.js.map": "/plant-app/static/js/main.56be90a1.chunk.js.map",
+    "runtime~main.js": "/plant-app/static/js/runtime~main.379239be.js",
+    "runtime~main.js.map": "/plant-app/static/js/runtime~main.379239be.js.map",
+    "static/js/2.ade8b935.chunk.js": "/plant-app/static/js/2.ade8b935.chunk.js",
+    "static/js/2.ade8b935.chunk.js.map": "/plant-app/static/js/2.ade8b935.chunk.js.map",
+    "index.html": "/plant-app/index.html",
+    "precache-manifest.3c90a06167e40d8a7f0b40a48b01ae69.js": "/plant-app/precache-manifest.3c90a06167e40d8a7f0b40a48b01ae69.js",
+    "service-worker.js": "/plant-app/service-worker.js",
+    "static/css/main.6ec210f6.chunk.css.map": "/plant-app/static/css/main.6ec210f6.chunk.css.map"
+  }
+}
