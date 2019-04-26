@@ -25,7 +25,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App>
         <Route path="/" exact component={Landing} />
         <Route path="/about" exact component={About} />
