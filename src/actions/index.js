@@ -4,6 +4,7 @@ export const AUTH_USER = "AUTH_USER";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const UPDATE_PLANTS_VIEW = "UPDATE_PLANTS_VIEW";
 export const FETCH_PLANTS = "FETCH_PLANTS";
+export const UPDATE_SINGLE_PLANT_VIEW = "UPDATE_SINGLE_PLANT_VIEW";
 
 export const updatePlantsVeiw = events => {
   return {
@@ -20,6 +21,15 @@ export const fetchPlants = () => async (dispatch, getState) => {
   });
   console.log("data ", data);
   dispatch({ type: UPDATE_PLANTS_VIEW, payload: data });
+};
+export const fetchPlant = id => async (dispatch, getState) => {
+  const token = getState().auth.authenticated;
+
+  const { data } = await heroku.get(`/api/plants/${id}`, {
+    headers: { authorization: token }
+  });
+  console.log("data ", data);
+  dispatch({ type: UPDATE_SINGLE_PLANT_VIEW, payload: data });
 };
 
 /** AUTH */

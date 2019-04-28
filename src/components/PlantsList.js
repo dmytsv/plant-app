@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import requireAuth from "./hoc/requireAuth";
 
 import { fetchPlants } from "../actions";
 import "./PlantsList.scss";
@@ -23,12 +22,23 @@ class PlantList extends Component {
       );
     }
     return this.props.plants.map(plant => (
-      <div className="ui card" key={plant._id}>
+      <div
+        className="ui card"
+        key={plant._id}
+        onClick={() => this.props.history.push(`/plants/${plant._id}`)}
+      >
         <div className="image">
-          <img src={plant.image} />
+          <img src={plant.image} alt={plant.name} />
         </div>
-        <div className="content">
-          <a className="header">{plant.name}</a>
+        <div
+          data-before={
+            plant.users.length
+              ? `Liked by ${plant.users.length} users`
+              : "Be first one to like!"
+          }
+          className="content"
+        >
+          <h3 className="header">{plant.name}</h3>
           <div className="description">{plant.description}</div>
         </div>
       </div>
@@ -48,4 +58,4 @@ const mapStateToProps = ({ plants }) => ({ plants });
 export default connect(
   mapStateToProps,
   { fetchPlants }
-)(requireAuth(PlantList));
+)(PlantList);

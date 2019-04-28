@@ -5,6 +5,7 @@
   flex-wrap: wrap;
 
   .card {
+    cursor: pointer;
     margin-left: 1.5%;
     margin-right: 1.5%;
     margin-top: 0;
@@ -13,6 +14,37 @@
     flex-direction: column;
     & > * {
       flex: 1 0;
+    }
+    position: relative;
+    .content::before {
+      content: "";
+      display: block;
+      width: 100%;
+      opacity: 0;
+    }
+    &:hover {
+      .image {
+        img {
+          transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+      }
+      .content::before {
+        content: attr(data-before);
+        transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        background: rgba(101, 198, 187, 0.9);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.7rem;
+        opacity: 1;
+        position: absolute;
+        z-index: 3;
+        // clip-path: polygon(0 2vw, 3vw 0, 100% 0, 100% 100%, 0 100%);
+        // transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
     }
     @include desktop {
       &:nth-of-type(4n + 4) {
@@ -30,6 +62,14 @@
         object-fit: cover;
       }
     }
+    .content::before {
+      transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+      clip-path: polygon(0 2vw, 3vw 0, 100% 0, 100% 100%, 0 100%);
+      top: 11vw;
+      left: 0;
+      height: 9vw;
+      position: absolute;
+    }
     @include tablet {
       flex: 1 0 47%;
       &:nth-of-type(3n + 3) {
@@ -40,6 +80,14 @@
         img {
           height: 30vw;
         }
+      }
+      .content::before {
+        transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        clip-path: polygon(0 3.5vw, 4.3vw 0, 100% 0, 100% 100%, 0 100%);
+        top: 17vw;
+        left: 0;
+        height: 13vw;
+        position: absolute;
       }
     }
     @include phone {
